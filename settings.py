@@ -64,11 +64,10 @@
 
 # Sequence of value/name pairs for types of product options,
 # eg Size, Colour.
-SHOP_OPTION_TYPE_CHOICES = (
-    (1, "Size"),
-    (2, "Colour"),
-    (3, "Day of Week"),
-)
+# SHOP_OPTION_TYPE_CHOICES = (
+#     (1, "Size"),
+#     (2, "Colour"),
+# )
 
 ######################
 # MEZZANINE SETTINGS #
