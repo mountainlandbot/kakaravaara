@@ -333,6 +333,7 @@ INSTALLED_APPS = (
     #"mezzanine.twitter",
     "mezzanine.accounts",
     #"mezzanine.mobile",
+    "reservation",
 )
 
 # List of processors used by RequestContext to populate the context.
