@@ -334,6 +334,7 @@ INSTALLED_APPS = (
     "mezzanine.accounts",
     #"mezzanine.mobile",
     "reservation",
+    "south",
 )
 
 # List of processors used by RequestContext to populate the context.
