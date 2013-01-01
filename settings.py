@@ -36,7 +36,7 @@
 # SHOP_CURRENCY_LOCALE = ""
 
 # Default cost of shipping when no custom shipping is implemented.
-# SHOP_DEFAULT_SHIPPING_VALUE = 10
+SHOP_DEFAULT_SHIPPING_VALUE = 0
 
 # Dotted package path and class name of the function that
 # is called on submit of the billing/shipping checkout step. This
