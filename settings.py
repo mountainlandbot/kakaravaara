@@ -69,6 +69,8 @@ SHOP_DEFAULT_SHIPPING_VALUE = 0
 #     (2, "Colour"),
 # )
 
+SHOP_CART_EXPIRY_MINUTES = 15
+
 ######################
 # MEZZANINE SETTINGS #
 ######################
