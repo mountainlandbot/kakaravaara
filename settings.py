@@ -33,7 +33,7 @@ SHOP_PAYMENT_STEP_ENABLED = False
 # Controls the formatting of monetary values accord to the locale
 # module in the python standard library. If an empty string is
 # used, will fall back to the system's locale.
-SHOP_CURRENCY_LOCALE = "fi_FI.UTF-8'"
+SHOP_CURRENCY_LOCALE = "fi_FI.UTF-8"
 
 # Default cost of shipping when no custom shipping is implemented.
 SHOP_DEFAULT_SHIPPING_VALUE = 0
