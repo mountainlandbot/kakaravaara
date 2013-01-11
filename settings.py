@@ -169,6 +169,8 @@ SHOP_CART_EXPIRY_MINUTES = 15
 # INSTALLED_APPS setting.
 USE_SOUTH = True
 
+# Blog slug
+BLOG_SLUG = 'uutiset'
 
 ########################
 # MAIN DJANGO SETTINGS #
