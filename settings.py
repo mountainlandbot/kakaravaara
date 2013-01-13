@@ -49,7 +49,7 @@ SHOP_DEFAULT_SHIPPING_VALUE = 0
 # is called once an order is successful and all of the order
 # object's data has been created. This is where any custom order
 # processing should be implemented.
-SHOP_HANDLER_ORDER = "reservation.order_handler"
+SHOP_HANDLER_ORDER = "reservation.order_handler.handler_function"
 
 # Dotted package path and class name of the function that
 # is called on submit of the payment checkout step. This is where
