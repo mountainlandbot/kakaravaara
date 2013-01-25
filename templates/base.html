@@ -45,6 +45,15 @@ $(function() {
 </head>
 <body id="{% block body_id %}body{% endblock %}">
 
+<div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+
 <div class="navbar navbar-inverse">
 <div class="navbar-inner">
 <div class="container">
@@ -91,13 +100,7 @@ $(function() {
     {% nevercache %}
     {% include "includes/user_panel.html" %}
     {% endnevercache %}
-    <div class="panel">
-    {% block right_panel %}
-    {% ifinstalled mezzanine.twitter %}
-    {% include "twitter/tweets.html" %}
-    {% endifinstalled %}
-    {% endblock %}
-    </div>
+    <div class="fb-like-box" data-href="http://www.facebook.com/pages/Kakaravaara/348177525199308" data-width="292" data-show-faces="false" data-stream="true" data-header="false"></div>
 </div>
 
 </div>
