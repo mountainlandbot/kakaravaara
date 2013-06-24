@@ -3,3 +3,4 @@ BeautifulSoup4
 mechanize
 suds
 mysql-python
+south
