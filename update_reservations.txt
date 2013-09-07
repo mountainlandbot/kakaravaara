@@ -1,3 +1,0 @@
->>> from cartridge.shop.models import *
->>> p = ReservableProduct.objects.all()[0]
->>> p.update_from_hook()

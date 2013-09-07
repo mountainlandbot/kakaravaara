@@ -1,6 +1,2 @@
-Mezzanine==1.4.7
-BeautifulSoup4
-mechanize
-suds
-mysql-python
-south
+Mezzanine==1.4.12
+MySQL-python

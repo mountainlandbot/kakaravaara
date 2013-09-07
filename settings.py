@@ -13,9 +13,6 @@
 # Setting to turn on featured images for shop categories. Defaults to False.
 # SHOP_CATEGORY_USE_FEATURED_IMAGE = True
 
-# If True, users must create a login for the checkout process.
-# SHOP_CHECKOUT_ACCOUNT_REQUIRED = False
-
 # Set an alternative OrderForm class for the checkout process.
 # SHOP_CHECKOUT_FORM_CLASS = 'cartridge.shop.forms.OrderForm'
 
@@ -27,16 +24,10 @@
 # completion.
 # SHOP_CHECKOUT_STEPS_CONFIRMATION = True
 
-# If False, there is no payment step on the checkout process.
-SHOP_PAYMENT_STEP_ENABLED = False
-
 # Controls the formatting of monetary values accord to the locale
 # module in the python standard library. If an empty string is
 # used, will fall back to the system's locale.
-SHOP_CURRENCY_LOCALE = "fi_FI.UTF-8"
-
-# Default cost of shipping when no custom shipping is implemented.
-SHOP_DEFAULT_SHIPPING_VALUE = 0
+# SHOP_CURRENCY_LOCALE = ""
 
 # Dotted package path and class name of the function that
 # is called on submit of the billing/shipping checkout step. This
@@ -49,7 +40,7 @@ SHOP_DEFAULT_SHIPPING_VALUE = 0
 # is called once an order is successful and all of the order
 # object's data has been created. This is where any custom order
 # processing should be implemented.
-SHOP_HANDLER_ORDER = "reservation.order_handler.handler_function"
+# SHOP_HANDLER_ORDER = "cartridge.shop.checkout.default_order_handler"
 
 # Dotted package path and class name of the function that
 # is called on submit of the payment checkout step. This is where
@@ -68,8 +59,6 @@ SHOP_HANDLER_ORDER = "reservation.order_handler.handler_function"
 #     (1, "Size"),
 #     (2, "Colour"),
 # )
-
-SHOP_CART_EXPIRY_MINUTES = 15
 
 ######################
 # MEZZANINE SETTINGS #
@@ -93,15 +82,6 @@ SHOP_CART_EXPIRY_MINUTES = 15
 #     ("Users", ("auth.User", "auth.Group",)),
 # )
 
-# A three item sequence, each containing a sequence of template tags
-# used to render the admin dashboard.
-#
-# DASHBOARD_TAGS = (
-#     ("blog_tags.quick_blog", "mezzanine_tags.app_list"),
-#     ("comment_tags.recent_comments",),
-#     ("mezzanine_tags.recent_actions",),
-# )
-
 # A sequence of templates used by the ``page_menu`` template tag. Each
 # item in the sequence is a three item sequence, containing a unique ID
 # for the template, a label for the template, and the template path.
@@ -113,6 +93,15 @@ SHOP_CART_EXPIRY_MINUTES = 15
 #     (1, "Top navigation bar", "pages/menus/dropdown.html"),
 #     (2, "Left-hand tree", "pages/menus/tree.html"),
 #     (3, "Footer", "pages/menus/footer.html"),
+# )
+
+# A three item sequence, each containing a sequence of template tags
+# used to render the admin dashboard.
+#
+# DASHBOARD_TAGS = (
+#     ("blog_tags.quick_blog", "mezzanine_tags.app_list"),
+#     ("comment_tags.recent_comments",),
+#     ("mezzanine_tags.recent_actions",),
 # )
 
 # A sequence of fields that will be injected into Mezzanine's (or any
@@ -148,29 +137,10 @@ SHOP_CART_EXPIRY_MINUTES = 15
 #
 # BLOG_USE_FEATURED_IMAGE = True
 
-# If ``True``, users will be automatically redirected to HTTPS
-# for the URLs specified by the ``SSL_FORCE_URL_PREFIXES`` setting.
-#
-# SSL_ENABLED = True
-
-# Host name that the site should always be accessed via that matches
-# the SSL certificate.
-#
-# SSL_FORCE_HOST = "www.example.com"
-
-# Sequence of URL prefixes that will be forced to run over
-# SSL when ``SSL_ENABLED`` is ``True``. i.e.
-# ('/admin', '/example') would force all URLs beginning with
-# /admin or /example to run over SSL. Defaults to:
-#
-# SSL_FORCE_URL_PREFIXES = ("/admin", "/account", "/shop/checkout",)
-
 # If True, the south application will be automatically added to the
 # INSTALLED_APPS setting.
 USE_SOUTH = True
 
-# Blog slug
-BLOG_SLUG = 'uutiset'
 
 ########################
 # MAIN DJANGO SETTINGS #
@@ -191,14 +161,14 @@ MANAGERS = ADMINS
 # timezone as the operating system.
 # If running in a Windows environment this must be set to the same as your
 # system time zone.
-TIME_ZONE = "Europe/Helsinki"
+TIME_ZONE = None
 
 # If you set this to True, Django will use timezone-aware datetimes.
 USE_TZ = True
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
-LANGUAGE_CODE = "fi"
+LANGUAGE_CODE = "en"
 
 # A boolean that turns on/off debug mode. When set to ``True``, stack traces
 # are displayed for error pages. Should always be set to ``False`` in
@@ -212,10 +182,7 @@ SITE_ID = 1
 
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.
-USE_I18N = True 
-
-# Make this unique, and don't share it with anybody.
-#SECRET_KEY = "17d8b057-4ef8-4091-a062-4cf431efd522dd2dc052-0105-463a-9c9b-924eeb7541bd60f1c496-7583-41cf-a1c0-4d680cdc6c8d"
+USE_I18N = False
 
 # Tuple of IP addresses, as strings, that:
 #   * See debug comments, when DEBUG is true
@@ -297,11 +264,6 @@ MEDIA_URL = STATIC_URL + "media/"
 # Example: "/home/media/media.lawrence.com/media/"
 MEDIA_ROOT = os.path.join(PROJECT_ROOT, *MEDIA_URL.strip("/").split("/"))
 
-# URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
-# trailing slash.
-# Examples: "http://foo.com/media/", "/media/".
-ADMIN_MEDIA_PREFIX = STATIC_URL + "grappelli/"
-
 # Package/module name to import the root urlpatterns from for the project.
 ROOT_URLCONF = "%s.urls" % PROJECT_DIRNAME
 
@@ -334,11 +296,9 @@ INSTALLED_APPS = (
     "mezzanine.forms",
     "mezzanine.pages",
     "mezzanine.galleries",
-    #"mezzanine.twitter",
+    "mezzanine.twitter",
     "mezzanine.accounts",
     #"mezzanine.mobile",
-    "reservation",
-    "south",
 )
 
 # List of processors used by RequestContext to populate the context.
@@ -372,12 +332,13 @@ MIDDLEWARE_CLASSES = (
     "mezzanine.core.middleware.TemplateForDeviceMiddleware",
     "mezzanine.core.middleware.TemplateForHostMiddleware",
     "mezzanine.core.middleware.AdminLoginInterfaceSelectorMiddleware",
+    "mezzanine.core.middleware.SitePermissionMiddleware",
     # Uncomment the following if using any of the SSL settings:
-    "mezzanine.core.middleware.SSLRedirectMiddleware",
+    # "mezzanine.core.middleware.SSLRedirectMiddleware",
     "mezzanine.pages.middleware.PageMiddleware",
     "mezzanine.core.middleware.FetchFromCacheMiddleware",
-    "mezzanine.core.middleware.SitePermissionMiddleware",
 )
+
 
 # Store these package names here as they may change in the future since
 # at the moment we are using custom forks of them.
@@ -399,29 +360,6 @@ OPTIONAL_APPS = (
 )
 
 DEBUG_TOOLBAR_CONFIG = {"INTERCEPT_REDIRECTS": False}
-
-###################
-# DEPLOY SETTINGS #
-###################
-
-# These settings are used by the default fabfile.py provided.
-# Check fabfile.py for defaults.
-
-# FABRIC = {
-#     "SSH_USER": "", # SSH username
-#     "SSH_PASS":  "", # SSH password (consider key-based authentication)
-#     "SSH_KEY_PATH":  "", # Local path to SSH key file, for key-based auth
-#     "HOSTS": [], # List of hosts to deploy to
-#     "VIRTUALENV_HOME":  "", # Absolute remote path for virtualenvs
-#     "PROJECT_NAME": "", # Unique identifier for project
-#     "REQUIREMENTS_PATH": "", # Path to pip requirements, relative to project
-#     "GUNICORN_PORT": 8000, # Port gunicorn will listen on
-#     "LOCALE": "en_US.UTF-8", # Should end with ".UTF-8"
-#     "LIVE_HOSTNAME": "www.example.com", # Host for public site.
-#     "REPO_URL": "", # Git or Mercurial remote repo URL for the project
-#     "DB_PASS": "", # Live database password
-#     "ADMIN_PASS": "", # Live admin user password
-# }
 
 
 ##################
@@ -446,13 +384,6 @@ except ImportError:
 
 # set_dynamic_settings() will rewrite globals based on what has been
 # defined so far, in order to provide some better defaults where
-# applicable. We also allow this settings module to be imported
-# without Mezzanine installed, as the case may be when using the
-# fabfile, where setting the dynamic settings below isn't strictly
-# required.
-try:
-    from mezzanine.utils.conf import set_dynamic_settings
-except ImportError:
-    pass
-else:
-    set_dynamic_settings(globals())
+# applicable.
+from mezzanine.utils.conf import set_dynamic_settings
+set_dynamic_settings(globals())
