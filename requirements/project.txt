@@ -1,3 +1,4 @@
 Mezzanine==1.4.12
 MySQL-python
 south
+reportlab
