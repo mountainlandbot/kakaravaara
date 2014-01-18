@@ -2,4 +2,4 @@ MySQL-python
 south
 reportlab
 Mezzanine==1.4.12
--e git+ssh://git@github.com/jaywink/cartridge.git#egg=Cartridge
+-e git+ssh://git@github.com/jaywink/cartridge-reservable.git#egg=Cartridge

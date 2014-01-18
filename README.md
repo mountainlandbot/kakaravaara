@@ -4,7 +4,7 @@
 
 ## Tech stack
 
-Built with [Mezzanine](https://github.com/stephenmcd/mezzanine) which is powered by [Django](https://www.djangoproject.com/). A [custom version](https://github.com/jaywink/cartridge) of [Cartridge](https://github.com/stephenmcd/cartridge) is used for the reservations part of the site.
+Built with [Mezzanine](https://github.com/stephenmcd/mezzanine) which is powered by [Django](https://www.djangoproject.com/). A [fork](https://github.com/jaywink/cartridge-reservable) of [Cartridge](https://github.com/stephenmcd/cartridge) is used for the reservations part of the site.
 
 ## Installation
 
