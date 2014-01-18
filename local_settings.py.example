@@ -1,0 +1,118 @@
+DEBUG = True
+
+DATABASES = {
+    "default": {
+        # Ends with "postgresql_psycopg2", "mysql", "sqlite3" or "oracle".
+        "ENGINE": "django.db.backends.sqlite3",
+        # DB name or path to database file if using sqlite3.
+        "NAME": "development.db",
+        # Not used with sqlite3.
+        "USER": "root",
+        # Not used with sqlite3.
+        "PASSWORD": "password",
+        # Set to empty string for localhost. Not used with sqlite3.
+        "HOST": "",
+        # Set to empty string for default. Not used with sqlite3.
+        "PORT": "",
+    }
+}
+
+# If False, there is no payment step on the checkout process.
+SHOP_PAYMENT_STEP_ENABLED = False
+
+# Controls the formatting of monetary values accord to the locale
+# module in the python standard library. If an empty string is
+# used, will fall back to the system's locale.
+SHOP_CURRENCY_LOCALE = "fi_FI.UTF-8"
+
+# Default cost of shipping when no custom shipping is implemented.
+SHOP_DEFAULT_SHIPPING_VALUE = 0
+
+# Dotted package path and class name of the function that
+# is called once an order is successful and all of the order
+# object's data has been created. This is where any custom order
+# processing should be implemented.
+# SHOP_HANDLER_ORDER = "reservation.order_handler.handler_function"
+
+SHOP_CART_EXPIRY_MINUTES = 1
+
+SHOP_USE_RATINGS = False
+SHOP_USE_VARIATIONS = False
+SHOP_USE_WISHLIST = False
+
+SHOP_SHOW_SIGNUPLOGIN = False
+
+SHOP_HIDE_BILLING_SHIPPING_FIELDS = ( "street",
+    "city", "state", "postcode", "country",    
+)
+
+SHOP_TOS_ON_CHECKOUT = True
+SHOP_TOS_URL = '/ehdot'
+
+SHOP_ALWAYS_SAME_BILLING_SHIPPING = True
+
+# Local time zone for this installation. Choices can be found here:
+# http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
+# although not all choices may be available on all operating systems.
+# On Unix systems, a value of None will cause Django to use the same
+# timezone as the operating system.
+# If running in a Windows environment this must be set to the same as your
+# system time zone.
+TIME_ZONE = "Europe/Helsinki"
+
+# Language code for this installation. All choices can be found here:
+# http://www.i18nguy.com/unicode/language-identifiers.html
+LANGUAGE_CODE = "fi"
+
+INSTALLED_APPS = (
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.redirects",
+    "django.contrib.sessions",
+    "django.contrib.sites",
+    "django.contrib.sitemaps",
+    "django.contrib.staticfiles",
+    "cartridge.shop",
+    "mezzanine.boot",
+    "mezzanine.conf",
+    "mezzanine.core",
+    "mezzanine.generic",
+    "mezzanine.blog",
+    "mezzanine.forms",
+    "mezzanine.pages",
+    "mezzanine.galleries",
+    # "mezzanine.twitter",
+    "mezzanine.accounts",
+    #"mezzanine.mobile",
+    # "reservation",
+)
+
+# List of middleware classes to use. Order is important; in the request phase,
+# these middleware classes will be applied in the order given, and in the
+# response phase the middleware will be applied in reverse order.
+MIDDLEWARE_CLASSES = (
+    "mezzanine.core.middleware.UpdateCacheMiddleware",
+    "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "django.contrib.redirects.middleware.RedirectFallbackMiddleware",
+    "django.middleware.common.CommonMiddleware",
+    "django.middleware.csrf.CsrfViewMiddleware",
+    "django.contrib.messages.middleware.MessageMiddleware",
+    "cartridge.shop.middleware.ShopMiddleware",
+    "mezzanine.core.request.CurrentRequestMiddleware",
+    "mezzanine.core.middleware.TemplateForDeviceMiddleware",
+    "mezzanine.core.middleware.TemplateForHostMiddleware",
+    "mezzanine.core.middleware.AdminLoginInterfaceSelectorMiddleware",
+    "mezzanine.core.middleware.SitePermissionMiddleware",
+    # Uncomment the following if using any of the SSL settings:
+    "mezzanine.core.middleware.SSLRedirectMiddleware",
+    "mezzanine.pages.middleware.PageMiddleware",
+    "mezzanine.core.middleware.FetchFromCacheMiddleware",
+)
+
+ALLOWED_HOSTS = (
+    "127.0.0.1",
+)
+
+
