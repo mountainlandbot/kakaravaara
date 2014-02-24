@@ -2,8 +2,5 @@ Django==1.5.5
 MySQL-python==1.2.5
 south==0.8.4
 reportlab==3.0
-filebrowser_safe==0.2.31
-grappelli-safe==0.3.6
 Mezzanine==3.0.6
-pisa==3.0.33
 -e git+ssh://git@github.com/jaywink/cartridge-reservable.git#egg=Cartridge
