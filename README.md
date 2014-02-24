@@ -72,15 +72,20 @@ cd kakaravaara
 
 `pip install -r requirements/project.txt`
 
+A proprietary `kakaravaara-utils` is also required. Ask author, will make it optional soon :P
+
 ### Setup application
 
-DB:
-
-`python manage.py createdb`
-
-Configuration
+#### Configuration
 
 `cp local_settings.py.example local_settings.py`
+
+#### DB
+
+```
+python manage.py syncdb --all
+python manage.py migrate --fake
+```
 
 ## Running application
 
