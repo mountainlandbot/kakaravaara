@@ -79,55 +79,48 @@
 </div>
 
 <div class="container">
-<div class="row">
+    <div class="row">
+        <div class="col-md-2 left">
+            {% block left_panel %}
+            <div class="panel panel-default tree">{% page_menu "pages/menus/tree.html" %}</div>
+            {% nevercache %}
+            {% include "includes/user_panel.html" %}
+            {% endnevercache %}
+            {% block right_panel %}
+            {% ifinstalled mezzanine.twitter %}
+            {% include "twitter/tweets.html" %}
+            {% endifinstalled %}
+            {% endblock %}
+            {% endblock %}
+            <div class="center-block">
+                <a href="http://www.rokuageopark.fi" target="_blank"><img title="Rokua Geopark" src="http://www.rokuageopark.fi/images/logo_geopark_rokua_finland.png" alt="" height="93" width="81" /></a> <a href="http://www.luontoon.fi/Retkikohteet/kansallispuistot/rokua/Sivut/Default.aspx" target="_blank"><img style="display: inline;" title="Luontoon.fi" src="http://www.luontoon.fi/SiteCollectionImages/Tunnukset/Rokua_tunnus%20113x89pxl.png" alt="" height="89" width="113" /></a>
+            </div>
+        </div>
 
-<div class="col-md-2 left">
-    {% block left_panel %}
-    <div class="panel panel-default tree">{% page_menu "pages/menus/tree.html" %}</div>
-    {% endblock %}
-</div>
-
-<div class="col-md-7 middle">
-    {% block main %}{% endblock %}
-</div>
-
-<div class="col-md-3 right">
-    {% nevercache %}
-    {% include "includes/user_panel.html" %}
-    {% endnevercache %}
-    <div class="panel panel-default">
-	<div class="panel-body fb-like-box" data-href="http://www.facebook.com/pages/Kakaravaara/348177525199308" data-show-faces="false" data-stream="true" data-header="false">
-    {% block right_panel %}
-    {% ifinstalled mezzanine.twitter %}
-    {% include "twitter/tweets.html" %}
-    {% endifinstalled %}
-    {% endblock %}
+        <div class="col-md-10 middle">
+            {% block main %}{% endblock %}
+        </div>
     </div>
-    </div>
-</div>
-
-</div>
 </div>
 
 <footer>
-<div class="container">
-
-<div class="row">
-<p class="site-info text-center">
-    {% trans "Powered by" %}
-    <a href="http://mezzanine.jupo.org">Mezzanine</a>{% ifinstalled cartridge.shop %},
-    <a href="http://cartridge.jupo.org">Cartridge</a>{% endifinstalled %}
-    {% trans "and" %}
-    <a href="http://www.djangoproject.com">Django</a>
-    <span class="separator">|</span>
-    {% trans "Theme by" %} <a target="_blank" href="http://getbootstrap.com">Bootstrap</a>
-    {% ifinstalled mezzanine.mobile %}
-    <span class="separator">|</span>
-    <a href="{% url "set_device" "mobile" %}?next={{ request.path }}">{% trans "View Mobile Site" %}</a>
-    {% endifinstalled %}
-</p>
-</div>
-</div>
+    <div class="container">
+        <div class="row">
+            <p class="site-info text-center">
+                {% trans "Powered by" %}
+                <a href="http://mezzanine.jupo.org">Mezzanine</a>{% ifinstalled cartridge.shop %},
+                <a href="http://cartridge.jupo.org">Cartridge</a>{% endifinstalled %}
+                {% trans "and" %}
+                <a href="http://www.djangoproject.com">Django</a>
+                <span class="separator">|</span>
+                {% trans "Theme by" %} <a target="_blank" href="http://getbootstrap.com">Bootstrap</a>
+                {% ifinstalled mezzanine.mobile %}
+                <span class="separator">|</span>
+                <a href="{% url "set_device" "mobile" %}?next={{ request.path }}">{% trans "View Mobile Site" %}</a>
+                {% endifinstalled %}
+            </p>
+        </div>
+    </div>
 </footer>
 
 {% include "includes/footer_scripts.html" %}
