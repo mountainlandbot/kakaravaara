@@ -47,14 +47,16 @@
 
 <body id="{% block body_id %}body{% endblock %}">
 
-<div id="fb-root"></div>
-    <script>(function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) return;
-      js = d.createElement(s); js.id = id;
-      js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1";
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));</script>
+{% if page.title == 'Etusivu' %}
+    <div id="fb-root"></div>
+        <script>(function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+{% endif %}
 
 <div class="container">
 
@@ -92,8 +94,9 @@
             {% endifinstalled %}
             {% endblock %}
             {% endblock %}
-            <div class="center-block">
-                <a href="http://www.rokuageopark.fi" target="_blank"><img title="Rokua Geopark" src="http://www.rokuageopark.fi/images/logo_geopark_rokua_finland.png" alt="" height="93" width="81" /></a> <a href="http://www.luontoon.fi/Retkikohteet/kansallispuistot/rokua/Sivut/Default.aspx" target="_blank"><img style="display: inline;" title="Luontoon.fi" src="http://www.luontoon.fi/SiteCollectionImages/Tunnukset/Rokua_tunnus%20113x89pxl.png" alt="" height="89" width="113" /></a>
+            <div style="text-align: center;">
+                <a href="http://www.rokuageopark.fi" target="_blank"><img title="Rokua Geopark" src="http://www.rokuageopark.fi/images/logo_geopark_rokua_finland.png" alt="" height="93" width="81" /></a>
+                <a href="http://www.luontoon.fi/Retkikohteet/kansallispuistot/rokua/Sivut/Default.aspx" target="_blank"><img style="display: inline;" title="Luontoon.fi" src="http://www.luontoon.fi/SiteCollectionImages/Tunnukset/Rokua_tunnus%20113x89pxl.png" alt="" height="89" width="113" /></a>
             </div>
         </div>
 
