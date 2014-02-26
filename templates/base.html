@@ -45,7 +45,7 @@
 {% block extra_head %}{% endblock %}
 </head>
 
-<body id="{% block body_id %}body{% endblock %}">
+<body id="{% block body_id %}body{% endblock %}" style="padding-top: 0px;">
 
 {% if page.title == 'Etusivu' %}
     <div id="fb-root"></div>
@@ -59,25 +59,26 @@
 {% endif %}
 
 <div class="container">
+    {% nevercache %}
+    {% if messages %}
+    <div class="messages">
+        {% for message in messages %}
+        <div class="alert alert-dismissable alert-{{ message.tags }}" data-alert="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            {{ message }}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% endnevercache %}
 
-{% nevercache %}
-{% if messages %}
-<div class="messages">
-{% for message in messages %}
-<div class="alert alert-dismissable alert-{{ message.tags }}" data-alert="alert">
-    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-    {{ message }}
-</div>
-{% endfor %}
-</div>
-{% endif %}
-{% endnevercache %}
-
-<h1>
-    {% if settings.SITE_TITLE %}{{ settings.SITE_TITLE }}{% endif %}
-    <small>{% if settings.SITE_TAGLINE %}{{ settings.SITE_TAGLINE }}{% endif %}</small>
-</h1>
-
+    <div class="page-header">
+        <a href="/"><img src="{% static "img/top.jpg" %}" style="width: 100%;"></a>
+        <!-- <h1 style="position: absolute; top: 50%; left: 20px;">
+            {% if settings.SITE_TITLE %}{{ settings.SITE_TITLE }}{% endif %}
+            <small>{% if settings.SITE_TAGLINE %}{{ settings.SITE_TAGLINE }}{% endif %}</small>
+        </h1> -->
+    </div>
 </div>
 
 <div class="container">
