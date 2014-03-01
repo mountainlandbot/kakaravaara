@@ -83,14 +83,16 @@
     {% endnevercache %}
 
     <div class="page-header">
-        <h1 style="border-radius: 3px; min-height: 150px; background-size: 100% 100%; background-image: url('{% static "img/top.jpg" %}'); color: #FFFFFF; letter-spacing: 2px; padding-left: 30px; padding-top: 46px;">
-            {% if settings.SITE_TITLE %}{{ settings.SITE_TITLE }}{% endif %}
-            <small>{% if settings.SITE_TAGLINE %}{{ settings.SITE_TAGLINE }}{% endif %}</small>
-        </h1>
+        <a href="/">
+            <h1 style="border-radius: 3px; min-height: 150px; background-size: 100% 100%; background-image: url('{% static "img/top.jpg" %}'); color: #FFFFFF; letter-spacing: 2px; padding-left: 30px; padding-top: 46px;">
+                {% if settings.SITE_TITLE %}{{ settings.SITE_TITLE }}{% endif %}
+                <small>{% if settings.SITE_TAGLINE %}{{ settings.SITE_TAGLINE }}{% endif %}</small>
+            </h1>
+        </a>
     </div>
 </div>
 
-<div class="container">
+<div class="container" style="padding-left: 0px; padding-right: 30px;">
     <div class="row">
         <div class="col-md-2 left">
             {% block left_panel %}
