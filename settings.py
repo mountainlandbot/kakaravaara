@@ -61,6 +61,12 @@ from __future__ import absolute_import, unicode_literals
 #     (2, "Colour"),
 # )
 
+## email addresses to copy reservation confirmation email to
+## used in reservations hook
+SHOP_ORDER_EMAIL_COPY = [
+    'admin@127.0.0.1',
+]
+
 ######################
 # MEZZANINE SETTINGS #
 ######################
