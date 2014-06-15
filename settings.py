@@ -67,6 +67,8 @@ SHOP_ORDER_EMAIL_COPY = [
     'admin@127.0.0.1',
 ]
 
+SHOP_PRODUCT_SORT_OPTIONS = (('Most expensive', '-unit_price'), ('Recently added', '-date_added'), ('Highest rated', '-rating_average'), ('Least expensive', 'unit_price'))
+
 ######################
 # MEZZANINE SETTINGS #
 ######################
