@@ -115,4 +115,5 @@ ALLOWED_HOSTS = (
     "127.0.0.1",
 )
 
-
+# IMPORTANT - CHANGE THIS
+SECRET_KEY = "pqdeLD`3vZ.(U)6c4=Yp!v<.Pqw}egh),<.N3?zn!B%;#]j]m?&hGT3q*i'mL*DD'put9NKDck'O3hI*3lACRzs,FMf'Y0~G6|Ije*0mnP^*9.M!})dL!a0{?5P#&LCu"
