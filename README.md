@@ -70,7 +70,9 @@ cd kakaravaara
 
 ### Install packages
 
-`pip install -r requirements/project.txt`
+`pip install -r requirements/project.txt --allow-external pil --allow-unverified pil`
+
+Some extra args to not be so picky about PIL sources.
 
 A proprietary `kakaravaara-utils` is also required. Ask author, will make it optional soon :P
 

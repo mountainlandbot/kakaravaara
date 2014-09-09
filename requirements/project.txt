@@ -4,3 +4,4 @@ south==0.8.4
 reportlab>=2.2,<3.0
 Mezzanine==3.0.6
 -e git+ssh://git@github.com/jaywink/cartridge-reservable.git#egg=Cartridge
+pil==1.1.7
