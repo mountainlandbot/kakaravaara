@@ -6,3 +6,4 @@
 local_settings.py
 /static
 prod_settings.py
+.idea
