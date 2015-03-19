@@ -69,6 +69,40 @@ SHOP_ORDER_EMAIL_COPY = [
 
 SHOP_PRODUCT_SORT_OPTIONS = (('Most expensive', '-unit_price'), ('Recently added', '-date_added'), ('Highest rated', '-rating_average'), ('Least expensive', 'unit_price'))
 
+# If False, there is no payment step on the checkout process.
+SHOP_PAYMENT_STEP_ENABLED = False
+
+# Controls the formatting of monetary values accord to the locale
+# module in the python standard library. If an empty string is
+# used, will fall back to the system's locale.
+SHOP_CURRENCY_LOCALE = "fi_FI.UTF-8"
+
+# Default cost of shipping when no custom shipping is implemented.
+SHOP_DEFAULT_SHIPPING_VALUE = 0
+
+# Dotted package path and class name of the function that
+# is called once an order is successful and all of the order
+# object's data has been created. This is where any custom order
+# processing should be implemented.
+# SHOP_HANDLER_ORDER = "reservation.order_handler.handler_function"
+
+SHOP_CART_EXPIRY_MINUTES = 1
+
+SHOP_USE_RATINGS = False
+SHOP_USE_VARIATIONS = False
+SHOP_USE_WISHLIST = False
+
+SHOP_SHOW_SIGNUPLOGIN = False
+
+SHOP_HIDE_BILLING_SHIPPING_FIELDS = ( "street",
+    "city", "state", "postcode", "country",
+)
+
+SHOP_TOS_ON_CHECKOUT = True
+SHOP_TOS_URL = '/ehdot'
+
+SHOP_ALWAYS_SAME_BILLING_SHIPPING = True
+
 ######################
 # MEZZANINE SETTINGS #
 ######################
@@ -159,13 +193,13 @@ USE_SOUTH = True
 # In the format (('Full Name', 'email@example.com'),
 #                ('Full Name', 'anotheremail@example.com'))
 ADMINS = (
-    # ('Your Name', 'your_email@domain.com'),
+    ('Jason Robinson', 'mail@jasonrobinson.me'),
 )
 MANAGERS = ADMINS
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["kakaravaara.fi", "127.0.0.1"]
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -174,7 +208,7 @@ ALLOWED_HOSTS = []
 # timezone as the operating system.
 # If running in a Windows environment this must be set to the same as your
 # system time zone.
-TIME_ZONE = None
+TIME_ZONE = "Europe/Helsinki"
 
 # If you set this to True, Django will use timezone-aware datetimes.
 USE_TZ = True
@@ -188,6 +222,10 @@ _ = lambda s: s
 LANGUAGES = (
     ('fi', _('Finnish')),
 )
+
+# Language code for this installation. All choices can be found here:
+# http://www.i18nguy.com/unicode/language-identifiers.html
+LANGUAGE_CODE = "fi"
 
 # A boolean that turns on/off debug mode. When set to ``True``, stack traces
 # are displayed for error pages. Should always be set to ``False`` in
@@ -300,7 +338,6 @@ STATICFILES_DIRS = (
     "staticfiles/",    
 )
 
-
 ################
 # APPLICATIONS #
 ################
@@ -323,9 +360,10 @@ INSTALLED_APPS = (
     "mezzanine.forms",
     "mezzanine.pages",
     "mezzanine.galleries",
-    "mezzanine.twitter",
+    # "mezzanine.twitter",
     "mezzanine.accounts",
     #"mezzanine.mobile",
+    # "reservation",
 )
 
 # List of processors used by RequestContext to populate the context.
@@ -349,14 +387,13 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 MIDDLEWARE_CLASSES = (
     "mezzanine.core.middleware.UpdateCacheMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
-    "django.middleware.locale.LocaleMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "django.contrib.redirects.middleware.RedirectFallbackMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "cartridge.shop.middleware.ShopMiddleware",
     "mezzanine.core.request.CurrentRequestMiddleware",
-    "mezzanine.core.middleware.RedirectFallbackMiddleware",
     "mezzanine.core.middleware.TemplateForDeviceMiddleware",
     "mezzanine.core.middleware.TemplateForHostMiddleware",
     "mezzanine.core.middleware.AdminLoginInterfaceSelectorMiddleware",
@@ -366,7 +403,6 @@ MIDDLEWARE_CLASSES = (
     "mezzanine.pages.middleware.PageMiddleware",
     "mezzanine.core.middleware.FetchFromCacheMiddleware",
 )
-
 # Store these package names here as they may change in the future since
 # at the moment we are using custom forks of them.
 PACKAGE_NAME_FILEBROWSER = "filebrowser_safe"
