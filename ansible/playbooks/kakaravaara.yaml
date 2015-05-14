@@ -12,6 +12,8 @@
     # system
     - name: User exists
       user: name=kakaravaara
+    - name: Add www-data to user group
+      user: name=www-data groups=kakaravaara append=yes
     - name: Create private key directory
       file: path=/home/kakaravaara/.ssh state=directory owner=kakaravaara
     - name: Add private ssh keys
@@ -43,15 +45,19 @@
     - name: Install Python support for PostgreSQL
       pip: name=psycopg2 virtualenv=/home/kakaravaara/venv
     - name: Create local settings
-      when: initialize is defined
       template: dest=/home/kakaravaara/kakaravaara/local_settings.py src=templates/local_settings.py
     - name: Make sure home directory is owned by user
       file: path=/home/kakaravaara/kakaravaara owner=kakaravaara group=kakaravaara recurse=yes
     - name: Make sure venv directory is owned by user
       file: path=/home/kakaravaara/venv owner=kakaravaara group=kakaravaara recurse=yes
+    - name: Media directory
+      file: path=/home/kakaravaara/kakaravaara/static/media owner=kakaravaara group=kakaravaara mode=0770 state=directory
+    - command: find /home/kakaravaara/kakaravaara/static/media -type d -exec chmod 0770 {} \;
+    - command: find /home/kakaravaara/kakaravaara/static/media -type f -exec chmod 0660 {} \;
     - name: Clean db
       when: cleandb is defined
       postgresql_db: name={{ db_name }} owner={{ db_user }} state=absent
+    - when: cleandb is defined
       postgresql_db: name={{ db_name }} owner={{ db_user }} state=present
     - name: Sync db
       when: initialize is defined
