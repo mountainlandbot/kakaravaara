@@ -3,7 +3,6 @@ south==0.8.4
 reportlab>=2.2,<3.0
 Mezzanine==3.1.10
 -e git+https://github.com/jaywink/cartridge-reservable.git@upstream-rebase#egg=Cartridge
-pil==1.1.7
 
 # This requires private key
 -e git+ssh://git@bitbucket.org/jaywink/kakaravaara_utils.git#egg=KakaravaaraUtils
