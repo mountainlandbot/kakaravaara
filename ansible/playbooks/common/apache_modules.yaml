@@ -1,0 +1,8 @@
+---
+# Apache modules
+- name: Apache wsgi module deps
+  apt: name=libapache2-mod-wsgi
+- name: Apache WSGI module enable
+  apache2_module: state=present name=wsgi
+- name: Apache SSL module
+  apache2_module: state=present name=ssl
