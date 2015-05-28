@@ -1,8 +1,10 @@
-Django==1.6.10
-south==0.8.4
+Django>=1.7,<1.8
 reportlab>=2.2,<3.0
-Mezzanine==3.1.10
--e git+https://github.com/jaywink/cartridge-reservable.git@upstream-rebase#egg=Cartridge
+#Mezzanine==3.1.10
+-e git+https://github.com/stephenmcd/mezzanine.git@master#egg=Mezzanine
+-e git+https://github.com/jaywink/cartridge-reservable.git@translations#egg=Cartridge
 
 # This requires private key
 -e git+ssh://git@bitbucket.org/jaywink/kakaravaara_utils.git#egg=KakaravaaraUtils
+
+django-modeltranslation

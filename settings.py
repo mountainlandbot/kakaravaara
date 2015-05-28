@@ -1,4 +1,5 @@
 from __future__ import absolute_import, unicode_literals
+import os
 
 ######################
 # CARTRIDGE SETTINGS #
@@ -180,9 +181,9 @@ SHOP_ALWAYS_SAME_BILLING_SHIPPING = True
 #
 # BLOG_USE_FEATURED_IMAGE = True
 
-# If True, the south application will be automatically added to the
+# If True, the django-modeltranslation will be added to the
 # INSTALLED_APPS setting.
-USE_SOUTH = True
+USE_MODELTRANSLATION = True
 
 
 ########################
@@ -215,17 +216,14 @@ USE_TZ = True
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
-#LANGUAGE_CODE = "en"
+LANGUAGE_CODE = "fi"
 
 # Supported languages
 _ = lambda s: s
 LANGUAGES = (
     ('fi', _('Finnish')),
+    ('en', _('English')),
 )
-
-# Language code for this installation. All choices can be found here:
-# http://www.i18nguy.com/unicode/language-identifiers.html
-LANGUAGE_CODE = "fi"
 
 # A boolean that turns on/off debug mode. When set to ``True``, stack traces
 # are displayed for error pages. Should always be set to ``False`` in
@@ -293,8 +291,6 @@ DATABASES = {
 # PATHS #
 #########
 
-import os
-
 # Full filesystem path to the project.
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
@@ -326,7 +322,7 @@ MEDIA_URL = STATIC_URL + "media/"
 MEDIA_ROOT = os.path.join(PROJECT_ROOT, *MEDIA_URL.strip("/").split("/"))
 
 # Package/module name to import the root urlpatterns from for the project.
-ROOT_URLCONF = "urls"
+ROOT_URLCONF = "%s.urls" % PROJECT_DIRNAME
 
 # Put strings here, like "/home/html/django_templates"
 # or "C:/www/django/templates".
@@ -351,19 +347,19 @@ INSTALLED_APPS = (
     "django.contrib.sites",
     "django.contrib.sitemaps",
     "django.contrib.staticfiles",
-    "cartridge.shop",
     "mezzanine.boot",
     "mezzanine.conf",
     "mezzanine.core",
     "mezzanine.generic",
+    "mezzanine.pages",
+    "cartridge.shop",
     "mezzanine.blog",
     "mezzanine.forms",
-    "mezzanine.pages",
     "mezzanine.galleries",
-    # "mezzanine.twitter",
-    "mezzanine.accounts",
-    #"mezzanine.mobile",
-    # "reservation",
+    "mezzanine.twitter",
+    # "mezzanine.accounts",
+    # "mezzanine.mobile",
+    "django_comments",
 )
 
 # List of processors used by RequestContext to populate the context.
@@ -379,6 +375,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.request",
     "django.core.context_processors.tz",
     "mezzanine.conf.context_processors.settings",
+    "mezzanine.pages.context_processors.page",
 )
 
 # List of middleware classes to use. Order is important; in the request phase,
@@ -387,6 +384,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 MIDDLEWARE_CLASSES = (
     "mezzanine.core.middleware.UpdateCacheMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.locale.LocaleMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.redirects.middleware.RedirectFallbackMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -403,6 +401,7 @@ MIDDLEWARE_CLASSES = (
     "mezzanine.pages.middleware.PageMiddleware",
     "mezzanine.core.middleware.FetchFromCacheMiddleware",
 )
+
 # Store these package names here as they may change in the future since
 # at the moment we are using custom forks of them.
 PACKAGE_NAME_FILEBROWSER = "filebrowser_safe"
@@ -458,11 +457,9 @@ DEBUG_TOOLBAR_CONFIG = {"INTERCEPT_REDIRECTS": False}
 # defined per machine.
 try:
     from local_settings import *
-except ImportError:
-    try:
-        from prod_settings import *
-    except ImportError:
-        pass
+except ImportError as e:
+    if "local_settings" not in str(e):
+        raise e
 
 
 ####################
