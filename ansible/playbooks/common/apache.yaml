@@ -1,0 +1,19 @@
+- name: Apache configuration
+  template: dest=/etc/apache2/sites-available/kakaravaara.conf src=../templates/apache.conf
+- name: Apache SSL cert
+  copy:
+      content: "{{ ssl_cert }}"
+      dest: /etc/ssl/certs/{{ hostname }}.crt
+- name: Apache SSL key
+  copy:
+      content: "{{ ssl_key }}"
+      dest: /etc/ssl/private/{{ hostname }}.key
+- name: Apache SSL chain
+  copy:
+      content: "{{ ssl_chain }}"
+      dest: /etc/ssl/certs/{{ hostname }}.chain.pem
+- include: apache_modules.yaml
+- name: Enable Apache site
+  command: a2ensite kakaravaara
+- name: Apache restart
+  service: name=apache2 state=restarted

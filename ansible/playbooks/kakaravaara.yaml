@@ -74,23 +74,7 @@
       django_manage: app_path=/home/kakaravaara/kakaravaara command=migrate virtualenv=/home/kakaravaara/venv
     - name: Collect statics
       django_manage: app_path=/home/kakaravaara/kakaravaara command=collectstatic virtualenv=/home/kakaravaara/venv
+    - name: Clean stale carts cron job
+      cron: name="Clean stale carts" user=kakaravaara minute=*/5 job="cd /home/kakaravaara/kakaravaara && /home/kakaravaara/venv/bin/python manage.py expirecarts"
     # web server
-    - name: Apache configuration
-      template: dest=/etc/apache2/sites-available/kakaravaara.conf src=templates/apache.conf
-    - name: Apache SSL cert
-      copy:
-          content: "{{ ssl_cert }}"
-          dest: /etc/ssl/certs/{{ hostname }}.crt
-    - name: Apache SSL key
-      copy:
-          content: "{{ ssl_key }}"
-          dest: /etc/ssl/private/{{ hostname }}.key
-    - name: Apache SSL chain
-      copy:
-          content: "{{ ssl_chain }}"
-          dest: /etc/ssl/certs/{{ hostname }}.chain.pem
-    - include: common/apache_modules.yaml
-    - name: Enable Apache site
-      command: a2ensite kakaravaara
-    - name: Apache restart
-      service: name=apache2 state=restarted
+    - include: common/apache.yaml
